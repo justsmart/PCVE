@@ -60,27 +60,20 @@ The experiments in the paper use PyTorch 2.x and a single NVIDIA GPU. The code a
 
 ## Data preparation
 
-The datasets are not redistributed in this repository. Prepare the six-view features and incomplete-data folds as MATLAB files using this layout:
+Download the five datasets and their preprocessed incomplete-data splits from the same link provided by the [RANK repository](https://github.com/justsmart/RANK):
+
+> **[Download MVMLC-DATA from Google Drive](https://drive.google.com/drive/folders/1ey17GpSJEYpYchY6Du_AOj5Yzi2Ml7JU?usp=drive_link)**
+
+After downloading, place the extracted dataset folders under `data/`:
 
 ```text
 data/
-└── corel5k/
-    ├── corel5k_six_view.mat
-    └── corel5k_six_view_MaskRatios_0.5_LabelMaskRatio_0.5_TraindataRatio_0.7.mat
+├── corel5k/
+├── pascal07/
+├── espgame/
+├── iaprtc12/
+└── mirflickr/
 ```
-
-The feature file must contain:
-
-- `X`: a MATLAB cell array containing the six feature views;
-- `label`: the multi-label matrix in `{0, 1}` or `{-1, 1}`.
-
-The fold file must contain:
-
-- `folds_data`: observed-view indicators;
-- `folds_label`: observed-label indicators;
-- `folds_sample_index`: one-based sample indices for each fold.
-
-Supported benchmark names in the paper are `corel5k`, `pascal07`, `espgame`, `iaprtc12`, and `mirflickr`.
 
 ## Training and evaluation
 
@@ -149,6 +142,7 @@ If this code is helpful to your research, please cite our paper:
   title     = {Permutation-Consistent Variational Encoding for Incomplete Multi-View Multi-Label Classification},
   author    = {Chengliang Liu and Bo Li and Bob Zhang and Xiaoling Luo and Yabo Liu and Jie Wen},
   booktitle = {The Fourteenth International Conference on Learning Representations},
+  pages     = {1--18},
   year      = {2026},
 }
 ```
