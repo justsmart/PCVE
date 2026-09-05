@@ -11,7 +11,7 @@ import torch
 import numpy as np
 import copy
 from myloss_new import Loss
-from torch.optim import SGD
+from torch.optim import Adam
 from torch.optim.lr_scheduler import StepLR, CosineAnnealingWarmRestarts
 
 
@@ -165,12 +165,7 @@ def main(args,file_path):
         dep_graph.fill_diagonal_(fill_value=0.)
         model=get_model(d_list,num_classes=classes_num,z_dim=args.z_dim,adj=dep_graph,rand_seed=0)
         loss_model = Loss()
-        optimizer = SGD(
-            model.parameters(),
-            lr=args.lr,
-            momentum=args.momentum,
-            weight_decay=args.weight_decay,
-        )
+        optimizer = Adam(model.parameters(), lr=args.lr)
         scheduler = None
 
         logger.info('train_data_num:'+str(len(train_dataset))+'  test_data_num:'+str(len(test_dataset))+'   fold_idx:'+str(fold_idx))
@@ -236,8 +231,6 @@ if __name__ == '__main__':
     parser.add_argument('--workers', default=8, type=int)
     parser.add_argument('--name', type=str, default='10B_final_')
     parser.add_argument('--lr', type=float, default=1e-3)
-    parser.add_argument('--momentum', type=float, default=0.9)
-    parser.add_argument('--weight-decay', type=float, default=0.0)
     parser.add_argument('--epochs', type=int, default=150)
     parser.add_argument('--pre_epochs', type=int, default=10)
     parser.add_argument('--z_dim', type=int, default=512)

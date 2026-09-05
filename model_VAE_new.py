@@ -219,8 +219,8 @@ class VAE(nn.Module):
         fusion_mu, fusion_sca = self.poe_aggregate(mu_views, var_views, mask)
         fusion_mu_perm, fusion_sca_perm = self.poe_aggregate(mu_views_perm, var_views_perm, mask)
         assert torch.sum(fusion_sca<0).item() == 0
-        z_sample = gaussian_reparameterization_var(fusion_mu, fusion_sca, times=10)
-        z_sample_perm = gaussian_reparameterization_var(fusion_mu_perm, fusion_sca_perm, times=10)
+        z_sample = gaussian_reparameterization_var(fusion_mu, fusion_sca, times=2)
+        z_sample_perm = gaussian_reparameterization_var(fusion_mu_perm, fusion_sca_perm, times=2)
         xr_list = self.generation_x(z_sample)
         xr_list_perm = self.generation_x(z_sample_perm)
 

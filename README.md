@@ -111,8 +111,7 @@ Useful options:
 |:--|:--:|:--|
 | `--z_dim` | `512` | Latent representation dimension |
 | `--batch_size` | `128` | Mini-batch size |
-| `--lr` | `0.001` | Initial SGD learning rate |
-| `--momentum` | `0.9` | SGD momentum |
+| `--lr` | `0.001` | Initial Adam learning rate |
 | `--alpha` | `1.0` | Reconstruction-loss weight |
 | `--beta` | `1.0` | Permutation-consistency weight |
 | `--gamma` | `0.1` | Inter-view contrastive-loss weight |
